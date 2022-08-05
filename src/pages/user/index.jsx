@@ -1,5 +1,6 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
+import ChangeContact from "../../ChangeContact";
 import ContactList from "../../ContactList";
 
 const User = () => {
@@ -28,6 +29,7 @@ const User = () => {
       </div>
 
       <ContactList contactList={contactList} setContactList={setContactList} />
+      {/* <ChangeContact contactList={contactList} setContactList={setContactList} /> */}
     </>
   );
 };

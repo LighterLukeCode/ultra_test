@@ -1,17 +1,11 @@
 import React from "react";
+import Contact from "./Contact";
 
 const ContactList = ({ contactList, setContactList }) => {
-  const removeContact = id => {
-    setContactList([...contactList.filter(contact => contact.id !== id)]);
-  };
   return (
     <ul>
       {contactList.map(contact => (
-        <div key={contact.id}>
-          <li>{contact.title}</li>
-          <button>изменить</button>
-          <button onClick={() => removeContact(contact.id)}>удалить</button>
-        </div>
+        <Contact key={contact.id} setContactList={setContactList} contact={contact} />
       ))}
     </ul>
   );
