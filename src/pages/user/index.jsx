@@ -1,11 +1,14 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
+import ContactList from "../../ContactList";
 
 const User = () => {
   const [contact, setContact] = React.useState("");
   const [contactList, setContactList] = React.useState([]);
 
   const addContact = () => {
-    setContactList([...contactList, contact]);
+    const newContact = { id: uuidv4(), title: contact };
+    setContactList([...contactList, newContact]);
     setContact("");
   };
 
@@ -23,15 +26,8 @@ const User = () => {
           Invite
         </button>
       </div>
-      <ul>
-        {contactList.map((contact, i) => (
-          <>
-            <li key={i}>{contact}</li>
-            <button>изменить</button>
-            <button>удалить</button>
-          </>
-        ))}
-      </ul>
+
+      <ContactList contactList={contactList} setContactList={setContactList} />
     </>
   );
 };
