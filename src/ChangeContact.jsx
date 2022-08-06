@@ -1,16 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { editContact } from "./redux/contactSlice";
 
-const ChangeContact = ({ contactList, setContactList, id, setIsChangeOpen }) => {
-  const [changeTitle, setChangeTitle] = React.useState("");
+const ChangeContact = ({ id, setIsChangeOpen, title }) => {
+  const [changeTitle, setChangeTitle] = React.useState(title);
+  const dispatch = useDispatch();
 
   const onSubmit = event => {
     event.preventDefault();
-    setContactList(contactList => [
-      ...contactList.map(contact => {
-        // if (contact.id === id) return { ...contact, title: changeTitle } else {return contact} ;
-        return contact.id === id ? { ...contact, title: changeTitle } : contact;
-      }),
-    ]);
+    dispatch(editContact({ id, title: changeTitle }));
     setIsChangeOpen(false);
   };
 

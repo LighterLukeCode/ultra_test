@@ -1,15 +1,18 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import ChangeContact from "../../ChangeContact";
 import ContactList from "../../ContactList";
+import { plusContact } from "../../redux/contactSlice";
+import Search from "../../Search";
 
 const User = () => {
   const [contact, setContact] = React.useState("");
-  const [contactList, setContactList] = React.useState([]);
+
+  const dispatch = useDispatch();
 
   const addContact = () => {
-    const newContact = { id: uuidv4(), title: contact };
-    setContactList([...contactList, newContact]);
+    dispatch(plusContact({ id: uuidv4(), title: contact }));
     setContact("");
   };
 
@@ -27,9 +30,8 @@ const User = () => {
           Invite
         </button>
       </div>
-
-      <ContactList contactList={contactList} setContactList={setContactList} />
-      {/* <ChangeContact contactList={contactList} setContactList={setContactList} /> */}
+      <Search />
+      <ContactList />
     </>
   );
 };

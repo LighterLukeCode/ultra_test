@@ -1,13 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import ChangeContact from "./ChangeContact";
+import { minusContact } from "./redux/contactSlice";
 
-const Contact = ({ contact, setContactList }) => {
+const Contact = ({ contact }) => {
   const [isChangeOpen, setIsChangeOpen] = React.useState(false);
+  const dispatch = useDispatch();
+
   const removeContact = id => {
-    setContactList(contactList => contactList.filter(contact => contact.id !== id));
+    dispatch(minusContact(id));
   };
   return isChangeOpen ? (
-    <ChangeContact setIsChangeOpen={setIsChangeOpen} setContactList={setContactList} id={contact.id} />
+    <ChangeContact title={contact.title} setIsChangeOpen={setIsChangeOpen} id={contact.id} />
   ) : (
     <li>
       <span>{contact.title}</span>
