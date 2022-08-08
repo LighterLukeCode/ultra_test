@@ -1,15 +1,15 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch } from "../../redux/hooks";
 import { v4 as uuidv4 } from "uuid";
-import ChangeContact from "../../ChangeContact";
+
 import ContactList from "../../ContactList";
 import { plusContact } from "../../redux/contactSlice";
 import Search from "../../Search";
 
-const User = () => {
+const User: React.FC = () => {
   const [contact, setContact] = React.useState("");
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const addContact = () => {
     dispatch(plusContact({ id: uuidv4(), title: contact }));

@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import ContactType from "../types/contact";
 
-const initialState = {
+type ContactState = {
+  items: ContactType[];
+  filter: string;
+};
+
+const initialState: ContactState = {
   items: [],
   filter: "",
 };
@@ -15,13 +21,11 @@ const contactSlice = createSlice({
     },
     minusContact: (state, action) => {
       state.items = state.items.filter(contact => contact.id !== action.payload);
-      console.log(action.payload);
     },
     editContact: (state, action) => {
       state.items = state.items.map(contact =>
         contact.id === action.payload.id ? { ...contact, title: action.payload.title } : contact
       );
-      console.log(action.payload);
     },
     filterValue: (state, action) => {
       state.filter = action.payload;

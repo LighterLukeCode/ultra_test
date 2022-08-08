@@ -2,12 +2,17 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import ChangeContact from "./ChangeContact";
 import { minusContact } from "./redux/contactSlice";
+import ContactType from "./types/contact";
 
-const Contact = ({ contact }) => {
+type ContactProps = {
+  contact: ContactType;
+};
+
+const Contact: React.FC<ContactProps> = ({ contact }) => {
   const [isChangeOpen, setIsChangeOpen] = React.useState(false);
   const dispatch = useDispatch();
 
-  const removeContact = id => {
+  const removeContact = (id: string) => {
     dispatch(minusContact(id));
   };
   return isChangeOpen ? (

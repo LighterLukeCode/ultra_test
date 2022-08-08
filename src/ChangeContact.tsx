@@ -2,11 +2,17 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { editContact } from "./redux/contactSlice";
 
-const ChangeContact = ({ id, setIsChangeOpen, title }) => {
+type ChangeContactProps = {
+  id: string;
+  setIsChangeOpen: (isOpen: boolean) => void;
+  title: string;
+};
+
+const ChangeContact: React.FC<ChangeContactProps> = ({ id, setIsChangeOpen, title }) => {
   const [changeTitle, setChangeTitle] = React.useState(title);
   const dispatch = useDispatch();
 
-  const onSubmit = event => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(editContact({ id, title: changeTitle }));
     setIsChangeOpen(false);
