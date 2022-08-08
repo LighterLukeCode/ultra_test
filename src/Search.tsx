@@ -10,7 +10,15 @@ const Search: React.FC = () => {
     dispatch(filterValue(e.target.value));
   };
 
-  return <input onChange={changeSearch} value={filter} type="text" />;
+  return (
+    <input
+      value={filter}
+      onChange={changeSearch}
+      type="text"
+      placeholder="Search members"
+      className="my-2 w-full text-sm bg-gray-300 text-gray-600 rounded h-10 p-3 focus:outline-none"
+    />
+  );
 };
 
 export default Search;

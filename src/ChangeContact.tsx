@@ -20,12 +20,18 @@ const ChangeContact: React.FC<ChangeContactProps> = ({ id, setIsChangeOpen, titl
 
   return (
     <form onSubmit={onSubmit}>
-      <input
-        onChange={event => setChangeTitle(event.target.value)}
-        value={changeTitle}
-        placeholder="Введите новое имя..."
-      />
-      <button type="submit">подтвердить</button>
+      <div className="flex justify-center items-center">
+        <input
+          value={changeTitle}
+          onChange={event => setChangeTitle(event.target.value)}
+          type="text"
+          placeholder="Invite members"
+          className="my-2 w-full text-sm bg-gray-300 text-gray-600 rounded h-10 p-3 focus:outline-none"
+        />
+        <div className="flex-grow text-right">
+          <button className=" bg-green-300 ml-1  hover:bg-green-600  text-white py-2 px-4 rounded">Change</button>
+        </div>
+      </div>
     </form>
   );
 };
